@@ -1,1 +1,5 @@
 .idea
+.coverage
+htmlcov
+dist
+*test_output.csv
