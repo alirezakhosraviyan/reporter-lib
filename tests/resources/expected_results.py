@@ -1,3 +1,10 @@
+EXPECTED_RESULT = [
+    ["Name", "Age", "City"],
+    ["Alice", 30, "New York"],
+    ["Bob", 25, "Los Angeles"],
+    ["Charlie, Jr.", 28, "San Francisco"],
+]
+
 EXPECTED_RESULT_BASE = [
     [
         "file",

@@ -6,7 +6,7 @@ import pytest
 from shapely.geometry import Polygon
 
 from reporter_lib.csv_reporters.reporter_abstraction import ReporterAbstract
-from reporter_lib.schemas import PickResult
+from reporter_lib.schemas import PickResult, PlyShape
 
 
 @pytest.fixture
@@ -18,7 +18,7 @@ def mock_logger() -> MagicMock:
 @pytest.fixture
 def mock_pick_result() -> PickResult:
     """Fixture to provide a mock PickResult instance."""
-    return PickResult(active_valves=["A", "B", "C"])
+    return PickResult(active_valves=["A", "B", "C"], plyshape=MagicMock(PlyShape))
 
 
 @pytest.fixture
@@ -34,12 +34,12 @@ def mock_polygon() -> Polygon:
 
 
 @pytest.fixture
-def mock_reporter(mock_logger) -> ReporterAbstract:
+def mock_reporter(mock_logger: Logger) -> ReporterAbstract:
     """Fixture to create a mock subclass of ReporterAbstract for testing."""
 
     class MockReporter(ReporterAbstract):
-        async def _process_data(self) -> str:
-            return "Processed"
+        async def _process_data(self) -> None:
+            return
 
     return MockReporter(
         "Test Report",

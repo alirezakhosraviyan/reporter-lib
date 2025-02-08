@@ -41,7 +41,7 @@ class CSVReportFormatter(ReporterAbstract):
             display_name=display_name,
             display_description=display_description,
             input_file=input_file,
-            _output_file_name_postfix="",
+            output_file_name_postfix="",
             logger=logger,
         )
 

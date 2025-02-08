@@ -1,11 +1,10 @@
 import json
 import logging
 import sys
+from typing import Any
 
 from shapely import wkt
-from shapely.geometry.polygon import Polygon
 
-from base import shallow_as_dict
 from reporter_lib.schemas import PickResult, PlyResult, PlyShape, Report
 
 
@@ -39,21 +38,8 @@ class ReportEncoder(json.JSONEncoder):
     _POLYGON_KEY = "__polygon__"
     _REPORT_KEY = "__report__"
 
-    def default(self, obj):
-        if isinstance(obj, Report):
-            return {self._REPORT_KEY: shallow_as_dict(obj)}
-        if isinstance(obj, PlyShape):
-            return {self._PLY_SHAPE_KEY: shallow_as_dict(obj)}
-        if isinstance(obj, PlyResult):
-            return {self._PLY_RESULT_KEY: shallow_as_dict(obj)}
-        if isinstance(obj, PickResult):
-            return {self._PICK_RESULT_KEY: shallow_as_dict(obj)}
-        if isinstance(obj, Polygon):
-            return {self._POLYGON_KEY: wkt.dumps(obj)}
-        return json.JSONEncoder.default(self, obj)
-
     @staticmethod
-    def decode_special(dct: dict):
+    def decode_special(dct: dict[str, dict[str, Any]]) -> object:
         if ReportEncoder._REPORT_KEY in dct:
             return Report(**dct[ReportEncoder._REPORT_KEY])
         if ReportEncoder._POLYGON_KEY in dct:

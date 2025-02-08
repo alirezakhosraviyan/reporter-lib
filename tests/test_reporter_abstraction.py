@@ -6,6 +6,7 @@ from shapely.geometry import Polygon
 
 from reporter_lib.csv_reporters.reporter_abstraction import ReporterAbstract
 from reporter_lib.schemas import PickResult
+from tests.resources.expected_results import EXPECTED_RESULT
 
 
 async def test_encode_active_cups(mock_pick_result: PickResult) -> None:
@@ -89,7 +90,8 @@ async def test_write_to_file_creates_correct_file(
     async with aiofiles.open("tests/resources/test_output.csv", mode="r") as file:
         content = await file.read()
     expected_content = (
-        "\n".join([";".join(map(str, row)) for row in mock_reporter._rows]) + "\n"
+        "\n".join([";".join(str(item) for item in row) for row in EXPECTED_RESULT])
+        + "\n"
     )
 
     assert content == expected_content, "File content does not match expected output."

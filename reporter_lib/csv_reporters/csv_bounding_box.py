@@ -6,6 +6,32 @@ from reporter_lib.csv_reporters.csv_report_base import CSVReportFormatter
 
 
 class CSVBoundingBoxFormatter(CSVReportFormatter):
+    _fields = [
+        "file",
+        "ply",
+        "cell",
+        "ee",
+        "area",
+        "perimeter",
+        "compactness",
+        "num_holes",
+        "holes_perimeter",
+        "holes_area",
+        "material",
+        "ply_phi",
+        "valid",
+        "reason",
+        "zone",
+        "weight",
+        "ee_x",
+        "ee_y",
+        "ee_phi",
+        "max_x",
+        "max_y",
+        "num_cups",
+        "active_cups",
+    ]
+
     def __init__(
         self,
         display_name: str,
@@ -21,10 +47,6 @@ class CSVBoundingBoxFormatter(CSVReportFormatter):
         )
 
         self._output_file_name_postfix = "_bb"
-        self._fields[-2:-2] = [
-            "max_x",
-            "max_y",
-        ]
 
     async def _process_data(self) -> None:
         for pick in self._data.picks:

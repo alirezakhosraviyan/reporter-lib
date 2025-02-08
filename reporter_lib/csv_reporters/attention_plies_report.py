@@ -1,6 +1,7 @@
 from logging import Logger
 
 from reporter_lib.csv_reporters.reporter_abstraction import ReporterAbstract
+from reporter_lib.schemas import PlyResult
 
 
 class CSVAttentionPliesFormatter(ReporterAbstract):
@@ -17,11 +18,11 @@ class CSVAttentionPliesFormatter(ReporterAbstract):
             display_name=display_name,
             display_description=display_description,
             input_file=input_file,
-            _output_file_name_postfix="_attention",
+            output_file_name_postfix="_attention",
             logger=logger,
         )
 
-    async def _get_sorted_ply_results(self):
+    async def _get_sorted_ply_results(self) -> list[PlyResult]:
         return sorted(
             self._data.ply_results, key=lambda p: p.success_rate, reverse=True
         )

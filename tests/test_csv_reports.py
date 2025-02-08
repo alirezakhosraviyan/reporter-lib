@@ -39,7 +39,8 @@ async def test_csv_report_base(mock_logger: MagicMock) -> None:
         content = await file.read()
 
     expected_content = (
-        "\n".join([";".join(map(str, row)) for row in EXPECTED_RESULT_BASE]) + "\n"
+        "\n".join([";".join(str(item) for item in row) for row in EXPECTED_RESULT_BASE])
+        + "\n"
     )
 
     assert content == expected_content, "File content does not match expected output."
@@ -64,7 +65,12 @@ async def test_csv_report_attention_plies(mock_logger: MagicMock) -> None:
         content = await file.read()
 
     expected_content = (
-        "\n".join([";".join(map(str, row)) for row in EXPECTED_RESULT_ATTENTION_PLIES])
+        "\n".join(
+            [
+                ";".join(str(item) for item in row)
+                for row in EXPECTED_RESULT_ATTENTION_PLIES
+            ]
+        )
         + "\n"
     )
 
@@ -91,7 +97,10 @@ async def test_csv_report_unprocessed_plies(mock_logger: MagicMock) -> None:
 
     expected_content = (
         "\n".join(
-            [";".join(map(str, row)) for row in EXPECTED_RESULT_UNPROCESSED_PLIES]
+            [
+                ";".join(str(item) for item in row)
+                for row in EXPECTED_RESULT_UNPROCESSED_PLIES
+            ]
         )
         + "\n"
     )
@@ -107,9 +116,7 @@ async def test_csv_report_bounding_box(mock_logger: MagicMock) -> None:
         mock_logger,
     )
 
-    reporter._get_output_file_name = (
-        lambda: "tests/resources/test_output.csv"
-    )  # Mock method
+    reporter._get_output_file_name = lambda: "tests/resources/test_output.csv"
 
     await reporter.execute()
 
@@ -118,7 +125,12 @@ async def test_csv_report_bounding_box(mock_logger: MagicMock) -> None:
         content = await file.read()
 
     expected_content = (
-        "\n".join([";".join(map(str, row)) for row in EXPECTED_RESULT_BOUNDING_BOX])
+        "\n".join(
+            [
+                ";".join(str(item) for item in row)
+                for row in EXPECTED_RESULT_BOUNDING_BOX
+            ]
+        )
         + "\n"
     )
 
@@ -144,7 +156,9 @@ async def test_csv_report_single_phi(mock_logger: MagicMock) -> None:
         content = await file.read()
 
     expected_content = (
-        "\n".join([";".join(map(str, row)) for row in EXPECTED_RESULT_SINGLE_PHI])
+        "\n".join(
+            [";".join(str(item) for item in row) for row in EXPECTED_RESULT_SINGLE_PHI]
+        )
         + "\n"
     )
 
@@ -159,9 +173,7 @@ async def test_csv_report_time_est(mock_logger: MagicMock) -> None:
         mock_logger,
     )
 
-    reporter._get_output_file_name = (
-        lambda: "tests/resources/test_output.csv"
-    )  # Mock method
+    reporter._get_output_file_name = lambda: "tests/resources/test_output.csv"  # noqa
 
     await reporter.execute()
 
@@ -170,7 +182,10 @@ async def test_csv_report_time_est(mock_logger: MagicMock) -> None:
         content = await file.read()
 
     expected_content = (
-        "\n".join([";".join(map(str, row)) for row in EXPECTED_RESULT_TIME_EST]) + "\n"
+        "\n".join(
+            [";".join(str(item) for item in row) for row in EXPECTED_RESULT_TIME_EST]
+        )
+        + "\n"
     )
 
     assert content == expected_content, "File content does not match expected output."

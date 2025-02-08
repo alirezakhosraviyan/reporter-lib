@@ -88,6 +88,7 @@ disallow_untyped_defs = true
 warn_unused_ignores = true
 warn_unreachable = true
 follow_untyped_imports = true
+exclude = ["tests"]
 
 [tool.bandit]
 exclude_dirs = ["tests"]
