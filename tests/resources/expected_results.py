@@ -144,3 +144,5 @@ EXPECTED_RESULT_ATTENTION_PLIES = data = [
     ["report2.dxf", "TestPly4", "TestCell1", "TestEE1", 50],
     ["report1.dxf", "TestPly1", "TestCell1", "TestEE1", 33],
 ]
+
+EXPECTED_RESULT_UNPROCESSED_PLIES = [["filename"], ["report2.dxf"]]

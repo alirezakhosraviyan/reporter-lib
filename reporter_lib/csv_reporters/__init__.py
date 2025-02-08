@@ -1,4 +1,9 @@
 from .attention_plies_report import CSVAttentionPliesFormatter
 from .csv_report_base import CSVReportFormatter
+from .csv_unprocessed_plies import CSVUnprocessedPliesFormatter
 
-__all__ = ["CSVReportFormatter", "CSVAttentionPliesFormatter"]
+__all__ = [
+    "CSVReportFormatter",
+    "CSVAttentionPliesFormatter",
+    "CSVUnprocessedPliesFormatter",
+]
