@@ -377,3 +377,9 @@ EXPECTED_RESULT_SINGLE_PHI = [
         "a*b*d",
     ],
 ]
+
+EXPECTED_RESULT_TIME_EST = [
+    ["process", "time", "cell", "ee", "material", "time_est_config"],
+    ["wait", 0.2, "TestCell1", "TestEE1", "TestMat1", "TestTEC1"],
+    ["action", 4.0, "TestCell1", "TestEE1", "TestMat1", "TestTEC1"],
+]
