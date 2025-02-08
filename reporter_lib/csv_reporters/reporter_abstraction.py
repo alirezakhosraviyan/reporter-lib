@@ -15,17 +15,20 @@ class ReporterAbstract(ABC):
     _fields: list[str] = []
     _rows: list[list[str]] = []
     _data: list[PickResult]
+    _output_file_name_postfix: str = ""
 
     def __init__(
         self,
         display_name: str,
         display_description: str,
         input_file: str,
+        _output_file_name_postfix: str,
         logger: Logger,
     ):
         self._display_name = display_name
         self._display_description = display_description
         self._input_file = input_file
+        self._output_file_name_postfix = _output_file_name_postfix
         self._logger = logger
 
     @staticmethod
@@ -39,9 +42,11 @@ class ReporterAbstract(ABC):
             ((4 * pi * geom.area) / (geom.length**2)) * 100 if geom.length != 0 else 0
         )
 
-    @staticmethod
-    def _get_output_file_name():
-        return f"reports_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
+    def _get_output_file_name(self):
+        return (
+            f"reports_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
+            f"{self._output_file_name_postfix}.csv"
+        )
 
     async def _write_to_file(self) -> None:
         async with aiofiles.open(

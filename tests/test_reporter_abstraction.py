@@ -4,7 +4,7 @@ import aiofiles
 import pytest
 from shapely.geometry import Polygon
 
-from reporter_lib.csv_reporters import ReporterAbstract
+from reporter_lib.csv_reporters.reporter_abstraction import ReporterAbstract
 from reporter_lib.schemas import PickResult
 
 
@@ -23,11 +23,14 @@ async def test_compactness(mock_polygon: Polygon) -> None:
     )
 
 
-async def test_get_output_file_name() -> None:
+async def test_get_output_file_name(mock_reporter: ReporterAbstract) -> None:
     """Test _get_output_file_name returns a properly formatted string."""
-    result = ReporterAbstract._get_output_file_name()
+    result = mock_reporter._get_output_file_name()
     assert result.startswith("reports_"), (
         "Output filename does not start with 'reports_'"
+    )
+    assert result.endswith("test_postfix.csv"), (
+        "Output filename does not end with 'test_postfix.csv'"
     )
 
 
