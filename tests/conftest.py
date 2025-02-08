@@ -5,7 +5,7 @@ from unittest.mock import MagicMock
 import pytest
 from shapely.geometry import Polygon
 
-from reporter_lib.csv_reporters import ReporterAbstract
+from reporter_lib.csv_reporters.reporter_abstraction import ReporterAbstract
 from reporter_lib.schemas import PickResult
 
 
@@ -42,5 +42,9 @@ def mock_reporter(mock_logger) -> ReporterAbstract:
             return "Processed"
 
     return MockReporter(
-        "Test Report", "Test Description", "test_input.json", mock_logger
+        "Test Report",
+        "Test Description",
+        "test_input.json",
+        "test_postfix",
+        mock_logger,
     )
