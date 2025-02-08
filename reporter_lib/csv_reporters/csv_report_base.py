@@ -6,7 +6,7 @@ from .reporter_abstraction import ReporterAbstract
 
 
 class CSVReportFormatter(ReporterAbstract):
-    _fields = (
+    _fields = [
         "file",
         "ply",
         "cell",
@@ -28,7 +28,7 @@ class CSVReportFormatter(ReporterAbstract):
         "ee_phi",
         "num_cups",
         "active_cups",
-    )
+    ]
 
     def __init__(
         self,
@@ -41,6 +41,7 @@ class CSVReportFormatter(ReporterAbstract):
             display_name=display_name,
             display_description=display_description,
             input_file=input_file,
+            _output_file_name_postfix="",
             logger=logger,
         )
 
