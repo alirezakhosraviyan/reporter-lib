@@ -83,6 +83,7 @@ class ReporterAbstract(ABC):
         Asynchronously writes the processed data to a CSV file.
         """
         filename = self._get_output_file_name()
+        self._logger.info(f"Writing {self._display_name} to {filename}")
         if os.path.dirname(filename):
             os.makedirs(os.path.dirname(filename), exist_ok=True)
 
@@ -103,6 +104,7 @@ class ReporterAbstract(ABC):
         Asynchronously loads JSON data from the input file
         and decodes it into a Report object.
         """
+        self._logger.debug(f"Loading {self._display_name} from {self._input_file}")
         async with aiofiles.open(self._input_file, mode="rb") as file:
             content = await file.read()
             self._data = json.loads(content, object_hook=ReportEncoder.decode_special)
