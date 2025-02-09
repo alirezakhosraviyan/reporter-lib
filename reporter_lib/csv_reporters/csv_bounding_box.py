@@ -3,9 +3,10 @@ from logging import Logger
 from shapely.geometry.polygon import Polygon
 
 from reporter_lib.csv_reporters.csv_report_base import CSVReportFormatter
+from reporter_lib.csv_reporters.reporter_abstraction import ReporterAbstract
 
 
-class CSVBoundingBoxFormatter(CSVReportFormatter):
+class CSVBoundingBoxFormatter(CSVReportFormatter, ReporterAbstract):
     """CSV report formatter for bounding box results."""
 
     _fields = [

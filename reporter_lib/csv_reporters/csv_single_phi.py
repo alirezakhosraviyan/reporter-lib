@@ -4,10 +4,11 @@ from logging import Logger
 from shapely.geometry.polygon import Polygon
 
 from reporter_lib.csv_reporters.csv_bounding_box import CSVBoundingBoxFormatter
+from reporter_lib.csv_reporters.reporter_abstraction import ReporterAbstract
 from reporter_lib.schemas import PickResult
 
 
-class CSVSinglePhiFormatter(CSVBoundingBoxFormatter):
+class CSVSinglePhiFormatter(CSVBoundingBoxFormatter, ReporterAbstract):
     def __init__(
         self,
         input_file: str,
