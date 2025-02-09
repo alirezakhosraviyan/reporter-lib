@@ -1,2 +1,0 @@
-importlib-resources==5.8
-Shapely~=1.8.2
