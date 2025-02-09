@@ -67,10 +67,6 @@
 - **Data Validation**  
   - Some validations still contain a lot of default values, which is not ideal. Usually, we prefer to ignore corrupted data rather than assigning default values. This issue was assumed to be intentional, so it was left unchanged. However, I did enhance some fields to ensure we won’t encounter `AttributeError` in the future.
 
-- **Data Integrity**  
-  - While we strive for high data quality, there may still be cases where some fields or values are not validated as strictly as they should be. Further improvements to validation can help reduce the risk of processing corrupt or invalid data.
-
-
 ## UML Class Diagram (main)
 
 ![class-diagram.png](class-diagram.png)
@@ -83,7 +79,7 @@
 |:-------------:|:-------:|:-------------------------------------------------------:|
 | `input_file`  | String  | path to json input file (ex: tests/resources/test.json) |
 | `export_type` | String  |         Export Type names (see choices in help)         |
-|     `-p`      |  bool   |           Eun the project on production mode            |
+|     `-p`      |  bool   |           Run the project on production mode            |
 |     `-h`      |  void   |                          help                           |
 
 
