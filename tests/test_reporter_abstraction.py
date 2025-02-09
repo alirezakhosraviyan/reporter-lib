@@ -27,7 +27,7 @@ async def test_compactness(mock_polygon: Polygon) -> None:
 async def test_get_output_file_name(mock_reporter: ReporterAbstract) -> None:
     """Test _get_output_file_name returns a properly formatted string."""
     result = mock_reporter._get_output_file_name()
-    assert result.startswith("reports_"), (
+    assert result.startswith("output/reports_"), (
         "Output filename does not start with 'reports_'"
     )
     assert result.endswith("test_postfix.csv"), (

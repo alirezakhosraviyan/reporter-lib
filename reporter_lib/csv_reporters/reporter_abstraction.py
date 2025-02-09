@@ -1,4 +1,5 @@
 import json
+import os
 from abc import ABC, abstractmethod
 from datetime import datetime
 from logging import Logger
@@ -73,7 +74,7 @@ class ReporterAbstract(ABC):
         :return: Output filename as a string
         """
         return (
-            f"reports_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
+            f"output/reports_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
             f"{self._output_file_name_postfix}.csv"
         )
 
@@ -81,9 +82,11 @@ class ReporterAbstract(ABC):
         """
         Asynchronously writes the processed data to a CSV file.
         """
-        async with aiofiles.open(
-            self._get_output_file_name(), mode="w", newline=""
-        ) as file:
+        filename = self._get_output_file_name()
+        if os.path.dirname(filename):
+            os.makedirs(os.path.dirname(filename), exist_ok=True)
+
+        async with aiofiles.open(filename, mode="w", newline="") as file:
             # Write the header row
             header_line = ";".join(map(str, self._fields)) + "\n"
             await file.write(header_line)
