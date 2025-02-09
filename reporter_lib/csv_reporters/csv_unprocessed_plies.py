@@ -8,14 +8,11 @@ class CSVUnprocessedPliesFormatter(ReporterAbstract):
 
     def __init__(
         self,
-        display_name: str,
-        display_description: str,
         input_file: str,
         logger: Logger,
     ) -> None:
         super().__init__(
-            display_name=display_name,
-            display_description=display_description,
+            display_name="Overview of DXF files with warnings (CSV)",
             input_file=input_file,
             output_file_name_postfix="_unprocessed",
             logger=logger,

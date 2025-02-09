@@ -43,7 +43,6 @@ def mock_reporter(mock_logger: Logger) -> ReporterAbstract:
 
     return MockReporter(
         "Test Report",
-        "Test Description",
         "test_input.json",
         "test_postfix",
         mock_logger,

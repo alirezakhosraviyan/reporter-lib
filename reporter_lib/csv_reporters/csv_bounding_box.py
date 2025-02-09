@@ -36,19 +36,16 @@ class CSVBoundingBoxFormatter(CSVReportFormatter):
 
     def __init__(
         self,
-        display_name: str,
-        display_description: str,
         input_file: str,
         logger: Logger,
     ) -> None:
         super().__init__(
-            display_name=display_name,
-            display_description=display_description,
             input_file=input_file,
             logger=logger,
         )
 
         self._output_file_name_postfix = "_bb"
+        self._display_name = "Detailed Data Output w Bounding Box (CSV)"
 
     async def _process_data(self) -> None:
         """

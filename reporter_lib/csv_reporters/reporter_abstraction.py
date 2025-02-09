@@ -21,7 +21,6 @@ class ReporterAbstract(ABC):
     def __init__(
         self,
         display_name: str,
-        display_description: str,
         input_file: str,
         output_file_name_postfix: str,
         logger: Logger,
@@ -30,13 +29,11 @@ class ReporterAbstract(ABC):
         Initializes the reporter with necessary metadata and input/output file details.
 
         :param display_name: Name of the report type
-        :param display_description: Description of the report
         :param input_file: Path to the input JSON file
         :param output_file_name_postfix: Postfix for output filename
         :param logger: Logger instance for logging messages
         """
         self._display_name = display_name
-        self._display_description = display_description
         self._input_file = input_file
         self._output_file_name_postfix = output_file_name_postfix
         self._logger = logger

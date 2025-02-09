@@ -29,8 +29,6 @@ async def test_csv_report_base(mock_logger: MagicMock) -> None:
     """
     # Initialize the reporter with test parameters
     reporter = CSVReportFormatter(
-        "Test Report",
-        "Test Description",
         "tests/resources/test.json",
         mock_logger,
     )
@@ -62,8 +60,6 @@ async def test_csv_report_attention_plies(mock_logger: MagicMock) -> None:
         mock_logger (MagicMock): Mocked logger to capture log messages.
     """
     reporter = CSVAttentionPliesFormatter(
-        "Test Report",
-        "Test Description",
         "tests/resources/test.json",
         mock_logger,
     )
@@ -98,8 +94,6 @@ async def test_csv_report_unprocessed_plies(mock_logger: MagicMock) -> None:
         mock_logger (MagicMock): Mocked logger to capture log messages.
     """
     reporter = CSVUnprocessedPliesFormatter(
-        "Test Report",
-        "Test Description",
         "tests/resources/test.json",
         mock_logger,
     )
@@ -134,8 +128,6 @@ async def test_csv_report_bounding_box(mock_logger: MagicMock) -> None:
         mock_logger (MagicMock): Mocked logger to capture log messages.
     """
     reporter = CSVBoundingBoxFormatter(
-        "Test Report",
-        "Test Description",
         "tests/resources/test.json",
         mock_logger,
     )
@@ -170,8 +162,6 @@ async def test_csv_report_single_phi(mock_logger: MagicMock) -> None:
         mock_logger (MagicMock): Mocked logger to capture log messages.
     """
     reporter = CSVSinglePhiFormatter(
-        "Test Report",
-        "Test Description",
         "tests/resources/test.json",
         mock_logger,
     )
@@ -203,8 +193,6 @@ async def test_csv_report_time_est(mock_logger: MagicMock) -> None:
         mock_logger (MagicMock): Mocked logger to capture log messages.
     """
     reporter = CSVTimeEstFormatter(
-        "Test Report",
-        "Test Description",
         "tests/resources/test.json",
         mock_logger,
     )
