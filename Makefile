@@ -19,3 +19,6 @@ lint:
 check: lint
 	poetry run pytest
 	poetry run bandit .
+
+shell:
+	docker build -t reporter-lib:dev --target development . && docker run --rm -it -v ./input:/home/app/input -v ./output:/home/app/output reporter-lib:dev /bin/sh

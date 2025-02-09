@@ -3,3 +3,5 @@
 htmlcov
 dist
 *test_output.csv
+input
+output

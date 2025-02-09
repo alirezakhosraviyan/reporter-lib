@@ -3,6 +3,8 @@ import asyncio
 import logging
 import os
 
+# Importing all csv reporter class to be available in globals()
+from reporter_lib.csv_reporters import *  # noqa
 from reporter_lib.csv_reporters.reporter_abstraction import ReporterAbstract
 from reporter_lib.utils import setup_logger
 
