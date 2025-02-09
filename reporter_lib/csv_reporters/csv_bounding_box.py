@@ -6,6 +6,8 @@ from reporter_lib.csv_reporters.csv_report_base import CSVReportFormatter
 
 
 class CSVBoundingBoxFormatter(CSVReportFormatter):
+    """CSV report formatter for bounding box results."""
+
     _fields = [
         "file",
         "ply",
@@ -49,6 +51,9 @@ class CSVBoundingBoxFormatter(CSVReportFormatter):
         self._output_file_name_postfix = "_bb"
 
     async def _process_data(self) -> None:
+        """
+        Process a list of PickResults and store the results in self._rows.
+        """
         for pick in self._data.picks:
             parent_file = pick.plyshape.parent_file
             ply_id = pick.plyshape.label

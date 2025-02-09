@@ -48,6 +48,9 @@ class CSVSinglePhiFormatter(CSVBoundingBoxFormatter):
         return picks[-1]
 
     async def _process_data(self) -> None:
+        """
+        Process a list of PlyResults and store the results in self._rows.
+        """
         for ply in self._data.ply_results:
             pick = await self._picks_first_valid(ply.picks)
             primary_failure_reason = await self._picks_primary_failure_reason(ply.picks)

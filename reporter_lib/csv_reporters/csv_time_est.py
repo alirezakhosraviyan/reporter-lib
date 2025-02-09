@@ -22,6 +22,9 @@ class CSVTimeEstFormatter(ReporterAbstract):
         )
 
     async def _process_data(self) -> None:
+        """
+        Process the data and generate the output rows.
+        """
         pick = self._data.picks[0]
         for process, time in self._data.time_estimate.items():
             self._rows.append(

@@ -22,5 +22,8 @@ class CSVUnprocessedPliesFormatter(ReporterAbstract):
         )
 
     async def _process_data(self) -> None:
+        """
+        Process the data and generate a row for each failed filename.
+        """
         for file in self._data.failed_filenames:
             self._rows.append([file])

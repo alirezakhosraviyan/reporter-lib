@@ -6,6 +6,8 @@ from .reporter_abstraction import ReporterAbstract
 
 
 class CSVReportFormatter(ReporterAbstract):
+    """Base class for CSV reporters."""
+
     _fields = [
         "file",
         "ply",
@@ -46,6 +48,9 @@ class CSVReportFormatter(ReporterAbstract):
         )
 
     async def _process_data(self) -> None:
+        """
+        Process a list of PickResults and store the results in self._rows.
+        """
         for pick in self._data.picks:
             parent_file = pick.plyshape.parent_file
             ply_id = pick.plyshape.label

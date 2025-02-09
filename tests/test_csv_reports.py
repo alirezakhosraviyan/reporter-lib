@@ -21,6 +21,13 @@ from tests.resources.expected_results import (
 
 
 async def test_csv_report_base(mock_logger: MagicMock) -> None:
+    """
+    Test the base CSV report formatter.
+
+    Args:
+        mock_logger (MagicMock): Mocked logger to capture log messages.
+    """
+    # Initialize the reporter with test parameters
     reporter = CSVReportFormatter(
         "Test Report",
         "Test Description",
@@ -28,13 +35,13 @@ async def test_csv_report_base(mock_logger: MagicMock) -> None:
         mock_logger,
     )
 
-    reporter._get_output_file_name = (
-        lambda: "tests/resources/test_output.csv"
-    )  # Mock method
+    # Mock method to return the output file name
+    reporter._get_output_file_name = lambda: "tests/resources/test_output.csv"
 
+    # Execute the report generation
     await reporter.execute()
 
-    # Read and verify file content
+    # Read and verify the content of the generated CSV file
     async with aiofiles.open("tests/resources/test_output.csv", mode="r") as file:
         content = await file.read()
 
@@ -43,10 +50,17 @@ async def test_csv_report_base(mock_logger: MagicMock) -> None:
         + "\n"
     )
 
+    # Assert that the content matches the expected result
     assert content == expected_content, "File content does not match expected output."
 
 
 async def test_csv_report_attention_plies(mock_logger: MagicMock) -> None:
+    """
+    Test the CSV report formatter for attention plies.
+
+    Args:
+        mock_logger (MagicMock): Mocked logger to capture log messages.
+    """
     reporter = CSVAttentionPliesFormatter(
         "Test Report",
         "Test Description",
@@ -60,7 +74,6 @@ async def test_csv_report_attention_plies(mock_logger: MagicMock) -> None:
 
     await reporter.execute()
 
-    # Read and verify file content
     async with aiofiles.open("tests/resources/test_output.csv", mode="r") as file:
         content = await file.read()
 
@@ -78,6 +91,12 @@ async def test_csv_report_attention_plies(mock_logger: MagicMock) -> None:
 
 
 async def test_csv_report_unprocessed_plies(mock_logger: MagicMock) -> None:
+    """
+    Test the CSV report formatter for unprocessed plies.
+
+    Args:
+        mock_logger (MagicMock): Mocked logger to capture log messages.
+    """
     reporter = CSVUnprocessedPliesFormatter(
         "Test Report",
         "Test Description",
@@ -91,7 +110,6 @@ async def test_csv_report_unprocessed_plies(mock_logger: MagicMock) -> None:
 
     await reporter.execute()
 
-    # Read and verify file content
     async with aiofiles.open("tests/resources/test_output.csv", mode="r") as file:
         content = await file.read()
 
@@ -109,6 +127,12 @@ async def test_csv_report_unprocessed_plies(mock_logger: MagicMock) -> None:
 
 
 async def test_csv_report_bounding_box(mock_logger: MagicMock) -> None:
+    """
+    Test the CSV report formatter for bounding box data.
+
+    Args:
+        mock_logger (MagicMock): Mocked logger to capture log messages.
+    """
     reporter = CSVBoundingBoxFormatter(
         "Test Report",
         "Test Description",
@@ -116,11 +140,12 @@ async def test_csv_report_bounding_box(mock_logger: MagicMock) -> None:
         mock_logger,
     )
 
-    reporter._get_output_file_name = lambda: "tests/resources/test_output.csv"
+    reporter._get_output_file_name = (
+        lambda: "tests/resources/test_output.csv"
+    )  # Mock method
 
     await reporter.execute()
 
-    # Read and verify file content
     async with aiofiles.open("tests/resources/test_output.csv", mode="r") as file:
         content = await file.read()
 
@@ -138,6 +163,12 @@ async def test_csv_report_bounding_box(mock_logger: MagicMock) -> None:
 
 
 async def test_csv_report_single_phi(mock_logger: MagicMock) -> None:
+    """
+    Test the CSV report formatter for single Phi data.
+
+    Args:
+        mock_logger (MagicMock): Mocked logger to capture log messages.
+    """
     reporter = CSVSinglePhiFormatter(
         "Test Report",
         "Test Description",
@@ -151,7 +182,6 @@ async def test_csv_report_single_phi(mock_logger: MagicMock) -> None:
 
     await reporter.execute()
 
-    # Read and verify file content
     async with aiofiles.open("tests/resources/test_output.csv", mode="r") as file:
         content = await file.read()
 
@@ -166,6 +196,12 @@ async def test_csv_report_single_phi(mock_logger: MagicMock) -> None:
 
 
 async def test_csv_report_time_est(mock_logger: MagicMock) -> None:
+    """
+    Test the CSV report formatter for time estimation data.
+
+    Args:
+        mock_logger (MagicMock): Mocked logger to capture log messages.
+    """
     reporter = CSVTimeEstFormatter(
         "Test Report",
         "Test Description",
@@ -173,11 +209,12 @@ async def test_csv_report_time_est(mock_logger: MagicMock) -> None:
         mock_logger,
     )
 
-    reporter._get_output_file_name = lambda: "tests/resources/test_output.csv"  # noqa
+    reporter._get_output_file_name = (
+        lambda: "tests/resources/test_output.csv"
+    )  # Mock method
 
     await reporter.execute()
 
-    # Read and verify file content
     async with aiofiles.open("tests/resources/test_output.csv", mode="r") as file:
         content = await file.read()
 
